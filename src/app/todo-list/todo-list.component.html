@@ -1,0 +1,28 @@
+<h2>Todo List</h2>
+
+<!-- Filter options -->
+<div>
+  <label>Filter: </label>
+  <select [(ngModel)]="selectedFilter" (change)="filterTodoItems()">
+    <option value="all">All</option>
+    <option value="completed">Completed</option>
+    <option value="incomplete">Incomplete</option>
+  </select>
+</div>
+
+<!-- Add Todo Form -->
+<div>
+  <input [(ngModel)]="newTodoDescription" placeholder="Todo Description" />
+  <label>Completed: </label>
+  <input type="checkbox" [(ngModel)]="newTodoStatus" />
+  <button (click)="addTodoItem()">Add</button>
+</div>
+
+<!-- Todo List -->
+<ul>
+  <li *ngFor="let todo of filteredTodoList">
+    <span [class.completed]="todo.completed">{{ todo.description }}</span>
+    <input type="checkbox" [(ngModel)]="todo.completed" />
+    <button (click)="deleteTodoItem(todo)">Delete</button>
+  </li>
+</ul>
